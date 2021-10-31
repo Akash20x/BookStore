@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .img_product{
+        width: 210px;
+        height: 270px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    {% for product in products %}
+        <div style="display: flex;">
+            <div class="col-4 text-center mt-5 align-self-center">
+                <img class="img_product display-4" src="{{product.image.url}}" alt="product_image">
+            </div>
+            <div class="col text-center mt-5">
+                <h5>{{product.name}}</h5> 
+                <p style="margin: 0 13%;">{{product.description}}</p>
+                <p></p>
+                <p>Price: ₹{{product.price}}</p>
+                <form action="/checkout/{{product.id}}" method="POST">
+                    {% csrf_token %}
+                    <!-- <label for="email">Email:</label><input required class="p-1" id="email" type="email" placeholder="Enter Your Email"  value={{request.user.email}}></p>
+                    <label for="phone">Mobile:</label><input required class="p-1" id="phone" type="text" placeholder="Enter Your MobileNumber"></p> -->
+                        <a href="/checkout/{{product.id}}"><button type="submit" class="btn btn-secondary col-lg-5">Buy Now</button></a>
+                  
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

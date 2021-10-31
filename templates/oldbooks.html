@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .product_image{
+        width: 180px;
+        height: 270px;
+    }
+    .para{
+        height: 100px;
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+
+
+{% if products %}
+
+<div class="container-fluid mt-2  ">
+    <div class="row">
+        <div class="col-9">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        
+                            <div class="card my-3">
+                                <div class="card-header text-center">
+                                    <img class="product_image" src="{{product.bookimage.url}}" alt="image">
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="card-title">{{product.book_name}}</h6>
+                                    <div class="para">
+                                        <p class="card-text">₹{{product.price}}</p>
+                                        <p class="card-text">{{product.category}}</p>
+                                        <p class="card-text">{{product.description}}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="/see2/{{product.sold_id}}"><button type="submit" class="btn btn-submit col-lg-12 btn-info">See More</button></a>
+                                </div>
+                            </div>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+<div style="margin-top: 10%; text-align: center; margin-bottom: 10%;">
+<h3>Sorry No Old Books Available At This Time</h3>
+</div>
+
+{% endif %}
+
+
+{% endblock %}
+

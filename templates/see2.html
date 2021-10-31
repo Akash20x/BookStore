@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .img_product{
+        width: 210px;
+        height: 270px;
+    }
+    body{
+        
+    }
+    
+</style>
+{% endblock %}
+{% block content %}
+    {% for product in products %}
+        <div style="display: flex;">
+            <div class="col-6 text-center mt-5 align-self-center">
+                <img class="img_product display-4" src="{{product.bookimage.url}}" alt="product_image">
+            </div>
+            <div class="col text-center mt-5 " style="margin-top: 3%;">
+                <h5>{{product.book_name}}</h5>
+                <p>{{product.description}}</p>
+                <p>Price:₹ {{product.price}}</p>
+                <form action="/" method="POST">
+                    {% csrf_token %}
+                        <a href="/"><button type="submit" class="btn btn-secondary col-lg-5">Checkout</button></a>
+                  
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
